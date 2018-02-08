@@ -12,19 +12,28 @@ class Teachstone extends AbstractProvider
 
   public $baseUrl = '';
 
+  public function __construct ($options = [])
+  {
+    parent::__construct ($options);
+
+    if (isset($options['baseUrl'])) {
+      $this->baseUrl = $options['baseUrl'];
+    }
+  }
+
   public function urlAuthorize()
   {
-    return $this->$baseUrl . '/oauth/authorize';
+    return $this->baseUrl . '/oauth/authorize';
   }
 
   public function urlAccessToken()
   {
-    return $this->$baseUrl . '/oauth/token';
+    return $this->baseUrl . '/oauth/token';
   }
 
   public function urlUserDetails(AccessToken $token)
   {
-    return $this->$baseUrl . '/me?access_token=' . $token;
+    return $this->baseUrl . '/me?access_token=' . $token;
   }
 
   public function userDetails($response, AccessToken $token)
