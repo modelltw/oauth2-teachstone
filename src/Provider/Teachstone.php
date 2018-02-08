@@ -10,25 +10,21 @@ class Teachstone extends AbstractProvider
 {
   public $authorizationHeader = 'OAuth';
 
+  public $baseUrl = '';
+
   public function urlAuthorize()
   {
-    global $CFG;
-
-    return $CFG->teachstonedashboardrooturl . '/oauth/authorize';
+    return $this->$baseUrl . '/oauth/authorize';
   }
 
   public function urlAccessToken()
   {
-    global $CFG;
-
-    return $CFG->teachstonedashboardrooturl . '/oauth/token';
+    return $this->$baseUrl . '/oauth/token';
   }
 
   public function urlUserDetails(AccessToken $token)
   {
-    global $CFG;
-
-    return $CFG->teachstonedashboardrooturl . '/me?access_token=' . $token;
+    return $this->$baseUrl . '/me?access_token=' . $token;
   }
 
   public function userDetails($response, AccessToken $token)
